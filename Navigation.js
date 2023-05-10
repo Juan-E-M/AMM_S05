@@ -7,6 +7,7 @@ import HomeScreen from "./Screens/HomeScreen";
 import SettingsScreen from "./Screens/SettingsScreen";
 import StackScreen from "./Screens/StackScreen";
 
+import { MaterialIcons } from '@expo/vector-icons'; 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const HomeStackNavigator = createNativeStackNavigator();
@@ -17,14 +18,13 @@ function MyStack () {
             initialRouteName="HomeScreen"
         >
             <HomeStackNavigator.Screen 
-                name="HomeScreen"
+                name="Bienvenido"
                 component={HomeScreen}
             />
             <HomeStackNavigator.Screen
-                name="Stack"
+                name="Acerca de"
                 component={StackScreen}
             />
-
         </HomeStackNavigator.Navigator>
     )
 }
@@ -36,24 +36,24 @@ function MyTabs () {
         <Tab.Navigator>
             <Tab.Screen 
                 name="Home" 
-                component={HomeScreen} 
+                component={MyStack} 
                 options={{
                     tabBarLabel: 'Inicio',
                     tabBarIcon: ({ color, size}) => (
                         <MaterialCommunityIcons name="home" color={color} size={size} />
                     ),
-                    tabBarBadge: 3,
                     headerShown: false
                 }}                
             />
             <Tab.Screen 
-                name="Settings" 
+                name="Idiomas" 
                 component={SettingsScreen}
                 options={{
-                    tabBarLabel: 'Ajustes',
+                    tabBarLabel: 'Idiomas',
                     tabBarIcon: ({color, size}) => (
-                        <MaterialCommunityIcons name="brigthness-5" color={color} size={size} />
-                    )
+                        <MaterialIcons name="emoji-flags" size={size} color={color}/>
+                    ),
+                    tabBarBadge: 3,
                 }}
             />
         </Tab.Navigator>
@@ -63,7 +63,7 @@ function MyTabs () {
 export default function Navigation () {
     return (
         <NavigationContainer>
-            <MyStack/>
+            <MyTabs/>
         </NavigationContainer>
     )
 }
